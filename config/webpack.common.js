@@ -1,5 +1,6 @@
 const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 
 module.exports = {
@@ -15,6 +16,12 @@ module.exports = {
             removeComments: false,
             collapseWhitespace: true
         }*/
+      }),
+      new webpack.ProvidePlugin({
+        $: "jquery",
+        jquery: "jquery",
+        "window.jQuery": "jquery",
+        jQuery:"jquery"
       })
    ],
    module: {

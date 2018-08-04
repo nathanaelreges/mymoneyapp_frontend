@@ -1,5 +1,2 @@
-### Generates html automatically trough html-webpack-plugin
-### HotReload and HotModuleReplacement powered by webpack-serve
+# myMoneyApp
 
-
-`npm run dev` and `npm run prod`
