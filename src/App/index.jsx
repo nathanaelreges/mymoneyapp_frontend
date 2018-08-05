@@ -1,12 +1,12 @@
 import React from 'react'
-
-import './common/dependecies'
 import Middleware from './Middleware'
-import Header from './common/Header'
-import Sidebar from './common/Sidebar'
-import Content from './common/Content'
-import Footer from './common/Footer'
-import routes from './common/routes'
+import routes from './routes'
+import '../common/templates/dependecies'
+import Header from '../common/templates/Header'
+import Sidebar from '../common/templates/Sidebar'
+import Content from '../common/templates/Content'
+import Footer from '../common/templates/Footer'
+
 
 const App = props => (
    <div>
