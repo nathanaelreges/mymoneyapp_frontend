@@ -4,7 +4,6 @@ import routes from './routes'
 import '../common/templates/dependecies'
 import Header from '../common/templates/Header'
 import Sidebar from '../common/templates/Sidebar'
-import Content from '../common/templates/Content'
 import Footer from '../common/templates/Footer'
 
 
@@ -13,9 +12,9 @@ const App = props => (
       <Middleware>
          <Header />
          <Sidebar />
-         <Content>
+         <div className="content-wrapper">
             {routes}
-         </Content>
+         </div>
          <Footer />
       </Middleware>
    </div>

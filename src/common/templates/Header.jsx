@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = props => (
    <header className="main-header">
-      <a href="/" className="logo">
-         <span className="logo-mini">M<b>M</b>A</span>
-         <span className="logo-lg">My<b>Money</b>App</span>
-      </a>
+      <Link to="/" className="logo">
+         <span className="logo-mini"><b>My</b>M</span>
+         <span className="logo-lg"><i className="fa fa-money"></i> <b>My</b>Money</span>
+      </Link>
       <nav className="navbar navbar-static-top" role="navigation">
          <a href="" className="sidebar-toggle" data-toggle="push-menu" role="button">
          </a>

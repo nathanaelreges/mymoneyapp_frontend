@@ -15,13 +15,13 @@ module.exports = {
          /*minify: {
             removeComments: false,
             collapseWhitespace: true
-        }*/
+         }*/
       }),
       new webpack.ProvidePlugin({
-        $: "jquery",
-        jquery: "jquery",
-        "window.jQuery": "jquery",
-        jQuery:"jquery"
+         $: "jquery",
+         jquery: "jquery",
+         "window.jQuery": "jquery",
+         jQuery: "jquery"
       })
    ],
    module: {
@@ -44,7 +44,7 @@ module.exports = {
                name: '[name].[ext]',
                outputPath: 'fonts/'
             */}
-        }]
+         }]
       }]
    },
    resolve: {
