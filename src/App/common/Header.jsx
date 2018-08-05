@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default props => (
+const Header = props => (
    <header className="main-header">
       <a href="/" className="logo">
          <span className="logo-mini">M<b>M</b>A</span>
@@ -12,3 +12,5 @@ export default props => (
       </nav>
    </header>
 )
+
+export default Header
