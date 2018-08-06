@@ -1,10 +1,13 @@
 import React from 'react'
 import Middleware from './Middleware'
 import routes from './routes'
+import { hot } from 'react-hot-loader'
+
 import '../common/templates/dependecies'
 import Header from '../common/templates/Header'
 import Sidebar from '../common/templates/Sidebar'
 import Footer from '../common/templates/Footer'
+
 
 
 const App = props => (
@@ -20,4 +23,4 @@ const App = props => (
    </div>
 )
 
-export default App
+export default hot(module)(App)

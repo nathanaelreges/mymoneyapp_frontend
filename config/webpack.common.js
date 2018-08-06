@@ -32,7 +32,7 @@ module.exports = {
             loader: 'babel-loader',
             options: {
                presets: ['react', 'env'],
-               plugins: ['transform-object-rest-spread']
+               plugins: ['transform-object-rest-spread', 'react-hot-loader/babel']
             }
          }],
       },
