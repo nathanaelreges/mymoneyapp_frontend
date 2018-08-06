@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
+import { reducer as DashboardReducer } from '../Components/Dashboard'
 
 export default combineReducers({
-   dashboard: () => ({credit: 100, debit: 50})
+   dashboard: DashboardReducer
 })

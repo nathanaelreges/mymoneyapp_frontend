@@ -1,11 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import Content from '../../common/templates/Content'
 import SmallBox from '../../common/templates/SmallBox'
-
+import { onLoad } from './actions'
 
 class Dashboard extends React.Component {
+   componentDidMount () {
+      this.props.onLoad()
+   }
+
    render() {
       const { credit, debit } = this.props
       return (   
@@ -29,4 +34,8 @@ const mapStateToProps = state => ({
    debit: state.dashboard.debit,
 })
 
-export default connect(mapStateToProps)(Dashboard)
+const mapDispatchToActions = dispatch => (
+   bindActionCreators({ onLoad }, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToActions)(Dashboard)
