@@ -1,27 +1,19 @@
 import React from 'react'
-import axios from 'axios'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import Content from '../../common/templates/Content'
 import SmallBox from '../../common/templates/SmallBox'
-
-const baseUrl = 'http://localhost:3003/api/billingcycles'
-
+import { onLoad } from './actions'
 
 class Dashboard extends React.Component {
-   constructor (props) {
-      super(props)
-      this.state = {credits: 0, debits: 0}
+   componentDidMount () {
+      this.props.onLoad()
    }
 
-   componentDidMount () {
-      axios.get(baseUrl + '/summary').then(x=>{
-         this.setState(x.data)
-      })
-   }
-   
    render() {
       const numberWithDots = (x) => (x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
-      const { credits, debits } = this.state
+      const { credits, debits } = this.props
 
       return (   
          <Content title="Dashboard" titleSmall="v1.0">
@@ -39,4 +31,13 @@ class Dashboard extends React.Component {
    }
 }
 
-export default Dashboard
+const mapStateToProps = state => ({
+   credits: state.dashboard.credits,
+   debits: state.dashboard.debits,
+})
+
+const mapDispatchToActions = dispatch => (
+   bindActionCreators({ onLoad }, dispatch)
+)
+
+export default connect(mapStateToProps, mapDispatchToActions)(Dashboard)
