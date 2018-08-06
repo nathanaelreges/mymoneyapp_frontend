@@ -1,17 +1,16 @@
 import React from 'react'
 
-const Dashboard = props => (
+const BillingCycles = props => (
    <div>
       <section className="content-header">
          <h1>
-            My Money App
-            <small>Dashboard</small>
+            Billing Cycles
          </h1>
       </section>
       <section className="content container-fluid">
-         <h1>DASHBOARD</h1>
+         <h1>Billing Cycles</h1>
       </section>
    </div>
 )
 
-export default Dashboard
+export default BillingCycles
