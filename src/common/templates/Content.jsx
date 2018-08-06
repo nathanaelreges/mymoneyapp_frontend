@@ -1,17 +1,17 @@
 import React from 'react'
 
-const Dashboard = props => (
+const Content = props => (
    <div>
       <section className="content-header">
          <h1>
-            My Money App
-            <small>Dashboard</small>
+            {props.title}
+            <small>{props.titleSmall}</small>
          </h1>
       </section>
       <section className="content container-fluid">
-         <h1>DASHBOARD</h1>
+         {props.children}
       </section>
    </div>
 )
 
-export default Dashboard
+export default Content
