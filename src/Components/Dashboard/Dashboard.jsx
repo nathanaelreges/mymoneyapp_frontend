@@ -12,17 +12,20 @@ class Dashboard extends React.Component {
    }
 
    render() {
+      const numberWithDots = (x) => (x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))
+
       const { credits, debits } = this.props
+
       return (   
          <Content title="Dashboard" titleSmall="v1.0">
             <SmallBox cols="12 4" bgColor="green" icon="bank" footer="Crédito">
-               <h1>R$ {credits}</h1><br/>
+               <h1>R$ {numberWithDots(credits || 0)}</h1><br/>
             </SmallBox>
             <SmallBox cols="12 4" bgColor="red" icon="credit-card" footer="Débito">
-               <h1>R$ {debits}</h1><br/>
+               <h1>R$ {numberWithDots(debits || 0)}</h1><br/>
             </SmallBox>
             <SmallBox cols="12 4" bgColor="blue" icon="money" footer="Consolidado">
-               <h1>R$ {credits - debits}</h1><br/>
+               <h1>R$ {numberWithDots((credits - debits) || 0)}</h1><br/>
             </SmallBox>
          </Content>
       )
