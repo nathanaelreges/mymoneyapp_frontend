@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Grid from './Grid'
+import Grid from '../layout/Grid'
 
 const SmallBox = props => (
    <Grid cols={props.cols}>
