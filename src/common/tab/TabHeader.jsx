@@ -7,8 +7,8 @@ import If from '../operator/If'
 
 const TabHeader = props => (
    <If value={props.showList[props.target] == true}>
-      <li className={props.selected == props.target? 'active': ''} >
-         <a href="#" data-toggle={props.target} onClick={()=>{props.select(props.target)}}>
+      <li className={props.target == props.selected? 'active': ''} >
+         <a href="javascript:;" onClick={()=>{props.select(props.target)}}> 
             {props.title}
          </a>
       </li>
@@ -17,11 +17,11 @@ const TabHeader = props => (
 
 const mapStateToProps = state => ({
    selected: state.tabs.selected,
-   showList: state.tabs.show
+   showList: state.tabs.showList
 })
 
 const mapDispatchToActions = dispatch => (
-   bindActionCreators({select}, dispatch)
+   bindActionCreators({ select }, dispatch)
 )
 
 export default connect(mapStateToProps, mapDispatchToActions)(TabHeader)

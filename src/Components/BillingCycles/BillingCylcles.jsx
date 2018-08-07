@@ -12,8 +12,8 @@ import { select, show } from '../../common/tab/actions'
 
 class BillingCycles extends React.Component {
    componentWillMount () {
-      this.props.select('list')
       this.props.show('list', 'delete')
+      this.props.select('list')
    }
 
    render() {
@@ -21,11 +21,17 @@ class BillingCycles extends React.Component {
          <Content title="BillingCycles" titleSmall="Cadastro">
             <TabsBox>
                <TabsHeader>
-                  <TabHeader title="Listar" target="list" />
+                  <TabHeader title="Listar" target="list"/>
                   <TabHeader title="Incluir" target="add" />
                   <TabHeader title="Editar" target="edit" />
                   <TabHeader title="Deletar" target="delete" />
                </TabsHeader>
+               <TabsContent>
+                  <TabContent id="list"><h1>list</h1></TabContent>
+                  <TabContent id="add"><h1>add</h1></TabContent>
+                  <TabContent id="edit"><h1>edit</h1></TabContent>
+                  <TabContent id="delete"><h1>delete</h1></TabContent>
+               </TabsContent>
             </TabsBox>
          </Content>
       )

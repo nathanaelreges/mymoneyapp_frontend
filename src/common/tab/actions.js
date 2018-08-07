@@ -5,11 +5,7 @@ export const select = (target) => {
    }
 }
 
-
 export const show = (...ids) => {
-
-   console.log()
-
    return {
       type: 'TAB_SHOW',
       payload: ids.reduce((acc, cur) => {
