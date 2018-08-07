@@ -1,4 +1,4 @@
-import Component from './BillingCylcles'
+import Component from './BillingCycles'
 import reducer from './reducer'
 
 export default Component

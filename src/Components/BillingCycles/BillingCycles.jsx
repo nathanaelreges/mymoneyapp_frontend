@@ -6,6 +6,7 @@ import Content from '../../common/templates/Content'
 import { TabsBox, TabsHeader, TabHeader, TabsContent, TabContent, TabActions  } from '../../common/tab'
 
 import List from './List'
+import Form from './Form'
 
 class BillingCycles extends React.Component {
    componentWillMount () {
@@ -27,8 +28,10 @@ class BillingCycles extends React.Component {
                   <TabContent id="list">
                      <List />
                   </TabContent>
+                  <TabContent id="edit">
+                     <Form />
+                  </TabContent>
                   <TabContent id="add"><h1>add</h1></TabContent>
-                  <TabContent id="edit"><h1>edit</h1></TabContent>
                   <TabContent id="delete"><h1>delete</h1></TabContent>
                </TabsContent>
             </TabsBox>

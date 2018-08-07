@@ -24,3 +24,10 @@ const Middleware = props =>(
 )
 
 export default Middleware
+
+
+if (module.hot) {
+   module.hot.accept('./reducer', () => {
+     store.replaceReducer(reducer);
+   });
+ }
