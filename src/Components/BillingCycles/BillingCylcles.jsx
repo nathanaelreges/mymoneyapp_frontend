@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import Content from '../../common/templates/Content'
 import { TabsBox, TabsHeader, TabHeader, TabsContent, TabContent, TabActions  } from '../../common/tab'
 
+import List from './List'
+
 class BillingCycles extends React.Component {
    componentWillMount () {
       this.props.showTabs('list', 'edit')
@@ -22,7 +24,9 @@ class BillingCycles extends React.Component {
                   <TabHeader title="Deletar" target="delete" />
                </TabsHeader>
                <TabsContent>
-                  <TabContent id="list"><h1>list</h1></TabContent>
+                  <TabContent id="list">
+                     <List />
+                  </TabContent>
                   <TabContent id="add"><h1>add</h1></TabContent>
                   <TabContent id="edit"><h1>edit</h1></TabContent>
                   <TabContent id="delete"><h1>delete</h1></TabContent>
