@@ -1,6 +1,13 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
+//bug fix for treeview effect
+let treeviewOpen = false
+const treeviewClick = (e) => {
+   treeviewOpen = e.currentTarget.classList.contains('menu-open')
+}
+//bug fix for treeview effect
+
 const Sidebar = ({location}) => (
    <aside className="main-sidebar">
       <section className="sidebar">  
@@ -8,14 +15,18 @@ const Sidebar = ({location}) => (
             <li className="header">
                Menu
             </li>
-            <li className={location.pathname == '/dashboard'? ' active' : ''}>
+            <li className={location.pathname == '/dashboard'? 'active' : ''}>
                <Link to="/dashboard">
                   <i className="fa fa-dashboard"></i>
                   <span>Dashboard</span>
                </Link>
             </li>
-            <li className={'treeview' + (location.pathname == '/billingcycles'? ' active' : '')}>
-               <a href="#">
+            <li onClick={treeviewClick} 
+               className={'treeview' + 
+                  (treeviewOpen ? ' menu-open': '') + 
+                  (location.pathname == '/billingcycles'? ' active' : '')
+               }>
+               <a href="#" className="open-treeview">
                   <i className="fa fa-edit"></i>
                   <span>Cadastro</span>
                   <span className="pull-right-container">
