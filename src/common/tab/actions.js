@@ -4,3 +4,17 @@ export const select = (target) => {
       payload: target
    }
 }
+
+
+export const show = (...ids) => {
+
+   console.log()
+
+   return {
+      type: 'TAB_SHOW',
+      payload: ids.reduce((acc, cur) => {
+         acc[cur] = true
+         return acc
+      },{})
+   }
+}
