@@ -1,11 +1,12 @@
-const INITIAL_STATE = {selected: ''}
+const INITIAL_STATE = {selected: 'list'}
 
 
-const reducer = (state, action) => {
+export default (state = INITIAL_STATE, action) => {
    switch (action.type) {
       case 'TAB_SELECT':
-         return {...state, selected: action.payloads}
+         return {...state, selected: action.payload}
       default:
          return state
    }
 }
+

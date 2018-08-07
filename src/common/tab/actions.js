@@ -1,4 +1,4 @@
-export const selected = (target) => {
+export const select = (target) => {
    return {
       type: 'TAB_SELECT',
       payload: target
