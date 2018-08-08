@@ -38,7 +38,8 @@ class Form extends React.Component {
                   </Grid>   
                </div>
                <div className="row">
-                  <ItemList list={list}/>
+                  <ItemList list={this.props.credits} label={'Créditos'} field={'credits'}/>
+                  <ItemList list={this.props.debits} label={'Débitos'} field={'debits'}/>
                </div>
             </div>
             <div className="box-footer">
@@ -57,7 +58,8 @@ class Form extends React.Component {
 
 const select = formValueSelector('billingCycles')
 const mapStateToProps = state => ({
-   list: select(state, 'credits')
+   credits: select(state, 'credits'),
+   debits: select(state, 'debits')
 })
 
 const mapDispatchToProps = dispatch => (

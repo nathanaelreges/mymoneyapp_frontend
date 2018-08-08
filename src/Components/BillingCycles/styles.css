@@ -2,6 +2,13 @@
    width: 80px;
 }
 
+.item-list-buttons {
+   width: 90px;
+   display: flex;
+   justify-content: space-around;
+}
+
+
 .form-grid {
    padding: 0;
 }

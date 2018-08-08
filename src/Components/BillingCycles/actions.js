@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { initialize as initForm, arrayInsert } from 'redux-form'
+import { initialize as initForm, arrayInsert, arrayRemove } from 'redux-form'
 import { toastr } from 'react-redux-toastr'
 
 import { TabActions } from '../../common/tab'
@@ -46,6 +46,9 @@ export const ItemList = {
    },
    copyField (field, index, data) {
       return arrayInsert('billingCycles', field, index, data)
+   },
+   deleteField (field, index) {
+      return arrayRemove('billingCycles', field, index)
    }
 }
 

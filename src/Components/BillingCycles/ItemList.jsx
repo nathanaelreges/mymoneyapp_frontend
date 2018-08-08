@@ -13,23 +13,26 @@ import { ItemList as actions } from './actions'
 
 class ItemList extends React.Component {
    renderRows () {
-      let { list, addField } = this.props
-      list = list.length === 0 ? [{}] : list
+      let { list, addField, copyField, deleteField, field } = this.props
+      list = list.length == 0 ? [{}] : list
 
       return list.map((item, index) => (
          <tr key={index}>
             <td>
-               <Field name={`credits[${index}].name`} component={Input}
+               <Field name={`${field}[${index}].name`} component={Input}
                   placeholder="Insira o nome" type="text"
-               />
-             </td>
-            <td>
-               <Field name={`credits[${index}].value`} component={Input}
-                  placeholder="Insira o valor" type="number"
                />
             </td>
             <td>
-               <IconBtn color="primary" icon="plus" onClick={()=>addField('credits', index+1)}/>
+               <Field name={`${field}[${index}].value`} component={Input}
+                  placeholder="Insira o valor" type="number"
+               />
+            </td>
+            <td className="item-list-buttons">
+               <IconBtn color="primary" icon="plus" size="xs" onClick={()=>addField(field, index+1)}/>
+               <IconBtn color="warning" icon="copy" size="xs" onClick={()=>copyField(field, index+1, item)}/>
+               <IconBtn color="danger" icon="trash-o" size="xs" 
+                  onClick={()=>{list.length>1 && deleteField(field, index)}}/>
             </td>
          </tr>
       ))
@@ -39,7 +42,7 @@ class ItemList extends React.Component {
       return (
          <Grid cols="12 6">
             <fieldset>
-               <legend>Créditos</legend>
+               <legend>{this.props.label}</legend>
                <table className="table">
                   <thead>
                      <tr>
