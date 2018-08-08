@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { init } from './actions'
+import ItemList from './ItemList'
 import FormGroup from '../../common/form/FormGroup'
 import Grid from '../../common/layout/Grid'
 
@@ -35,6 +36,9 @@ class Form extends React.Component {
                         readOnly={typeDelete} placeholder="Insira o ano"
                      />
                   </Grid>   
+               </div>
+               <div className="row">
+                  <ItemList />
                </div>
             </div>
             <div className="box-footer">
