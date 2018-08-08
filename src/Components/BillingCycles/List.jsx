@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import IconBtn from '../../common/templates/IconBtn'
-import { onListLoad, onListEdit } from './actions'
+import { onListLoad, onListEdit , onListDelete } from './actions'
 
 
 
@@ -20,7 +20,12 @@ class List extends React.Component {
                <td>{item.month}</td>
                <td>{item.year}</td>
                <td>
-                  <IconBtn color="warning" icon="edit" onClick={()=>{this.props.onEdit(item)}}/>
+                  <IconBtn color="warning" icon="edit" size="xs" moreClass="mr-5"
+                     onClick={()=>{this.props.onEdit(item)}}
+                  />
+                  <IconBtn color="danger" icon="times" size="xs" 
+                     onClick={()=>{this.props.onDelete(item)}}
+                  />
                </td>
             </tr>
          ))
@@ -49,7 +54,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => (
    bindActionCreators({ 
       onLoad: onListLoad,
-      onEdit: onListEdit
+      onEdit: onListEdit,
+      onDelete: onListDelete
    }, dispatch)
 )
 

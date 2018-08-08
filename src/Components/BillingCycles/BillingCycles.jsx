@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Content from '../../common/templates/Content'
 import { TabsBox, TabsHeader, TabHeader, TabsContent, TabContent, TabActions  } from '../../common/tab'
 
-import { onAdd, onEdit } from './actions'
+import { onAdd, onEdit, onDelete } from './actions'
 import List from './List'
 import Form from './Form'
 
@@ -35,7 +35,9 @@ class BillingCycles extends React.Component {
                   <TabContent id="edit">
                      <Form type="edit" onSubmit={this.props.onEdit}/>
                   </TabContent>
-                  <TabContent id="delete"><h1>delete</h1></TabContent>
+                  <TabContent id="delete">
+                     <Form type="delete" onSubmit={this.props.onDelete}/>
+                  </TabContent>
                </TabsContent>
             </TabsBox>
          </Content>
@@ -49,7 +51,8 @@ const mapDispatchToActions = dispatch => (bindActionCreators({
    selectTab: TabActions.select, 
    showTabs: TabActions.show,
    onAdd,
-   onEdit
+   onEdit,
+   onDelete
 }, dispatch))
 
 export default connect(mapStateToProps, mapDispatchToActions)(BillingCycles)

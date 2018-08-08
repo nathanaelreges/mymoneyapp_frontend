@@ -20,6 +20,7 @@ export const init = () => (
    ]
 )
 
+
 export const onListEdit = data => (
    [   
       TabActions.show('edit'),
@@ -27,6 +28,17 @@ export const onListEdit = data => (
       initForm('billingCycles', data)
    ]
 )
+
+export const onListDelete = data => (
+   [   
+      TabActions.show('delete'),
+      TabActions.select('delete'),
+      initForm('billingCycles', data)
+   ]
+)
+
+
+
 
 export const onAdd = data => (
    axios.post(BaseURL, data)
@@ -45,6 +57,18 @@ export const onEdit = data => (
       })
    //
 )
+
+export const onDelete = data => (
+   axios.delete(BaseURL + '/' + data._id)
+      .then(init)
+      .catch((err) =>{
+         return {type: 'test'}
+      })
+   //
+)
+
+
+
 
 function fetchList () {
    return axios.get(BaseURL).then(res=>({
