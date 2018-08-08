@@ -3,16 +3,15 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Content from '../../common/templates/Content'
-import { TabsBox, TabsHeader, TabHeader, TabsContent, TabContent, TabActions  } from '../../common/tab'
+import { TabsBox, TabsHeader, TabHeader, TabsContent, TabContent } from '../../common/tab'
 
-import { onAdd, onEdit, onDelete } from './actions'
+import { addCycle, editCycle, deleteCycle, init } from './actions'
 import List from './List'
 import Form from './Form'
 
 class BillingCycles extends React.Component {
    componentWillMount () {
-      this.props.showTabs('list', 'add')
-      this.props.selectTab('list')
+      this.props.init()
    }
 
    render() {
@@ -30,13 +29,13 @@ class BillingCycles extends React.Component {
                      <List />
                   </TabContent>
                   <TabContent id="add">
-                     <Form onSubmit={this.props.onAdd}/>
+                     <Form onSubmit={this.props.addCycle}/>
                   </TabContent>
                   <TabContent id="edit">
-                     <Form type="edit" onSubmit={this.props.onEdit}/>
+                     <Form type="edit" onSubmit={this.props.editCycle}/>
                   </TabContent>
                   <TabContent id="delete">
-                     <Form type="delete" onSubmit={this.props.onDelete}/>
+                     <Form type="delete" onSubmit={this.props.deleteCycle}/>
                   </TabContent>
                </TabsContent>
             </TabsBox>
@@ -47,12 +46,11 @@ class BillingCycles extends React.Component {
 
 const mapStateToProps = state => ({selected: state.tabs.selected})
 
-const mapDispatchToActions = dispatch => (bindActionCreators({ 
-   selectTab: TabActions.select, 
-   showTabs: TabActions.show,
-   onAdd,
-   onEdit,
-   onDelete
+const mapDispatchToActions = dispatch => (bindActionCreators({
+   init,
+   addCycle,
+   editCycle,
+   deleteCycle
 }, dispatch))
 
 export default connect(mapStateToProps, mapDispatchToActions)(BillingCycles)

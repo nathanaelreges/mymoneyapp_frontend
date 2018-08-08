@@ -1,46 +1,35 @@
 import axios from 'axios'
 import { initialize as initForm } from 'redux-form'
 
-
 import { TabActions } from '../../common/tab'
 
 const BaseURL = 'http://localhost:3003/api/billingcycles'
 
 
-export const onListLoad = () => (
-   fetchList()
-)
-
-export const init = () => (
-   [
-      TabActions.show('list', 'add'),
-      TabActions.select('list'),
-      fetchList(),
-      initForm('billingCycles', {})
-   ]
-)
+export const init = () => ([
+   TabActions.show('list', 'add'),
+   TabActions.select('list'),
+   fetchList(),
+   initForm('billingCycles', {})
+])
 
 
-export const onListEdit = data => (
-   [   
-      TabActions.show('edit'),
-      TabActions.select('edit'),
-      initForm('billingCycles', data)
-   ]
-)
+export const goEditCycle = data => ([   
+   TabActions.show('edit'),
+   TabActions.select('edit'),
+   initForm('billingCycles', data)
+])
 
-export const onListDelete = data => (
-   [   
-      TabActions.show('delete'),
-      TabActions.select('delete'),
-      initForm('billingCycles', data)
-   ]
-)
+export const goDeleteCycle = data => ([   
+   TabActions.show('delete'),
+   TabActions.select('delete'),
+   initForm('billingCycles', data)
+])
 
 
 
 
-export const onAdd = data => (
+export const addCycle = data => (
    axios.post(BaseURL, data)
       .then(init)
       .catch((err) =>{
@@ -49,7 +38,7 @@ export const onAdd = data => (
    //
 )
 
-export const onEdit = data => (
+export const editCycle = data => (
    axios.put(BaseURL + '/' + data._id, data)
       .then(init)
       .catch((err) =>{
@@ -58,7 +47,7 @@ export const onEdit = data => (
    //
 )
 
-export const onDelete = data => (
+export const deleteCycle = data => (
    axios.delete(BaseURL + '/' + data._id)
       .then(init)
       .catch((err) =>{
@@ -70,10 +59,10 @@ export const onDelete = data => (
 
 
 
-function fetchList () {
-   return axios.get(BaseURL).then(res=>({
+const fetchList = () => (
+   axios.get(BaseURL).then(res=>({
       type: "LIST_FETCHED",
       payload: res.data
    }))
-}
+)
 
