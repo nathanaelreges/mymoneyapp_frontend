@@ -1,5 +1,5 @@
 import React from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, formValueSelector } from 'redux-form'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -11,7 +11,7 @@ import Grid from '../../common/layout/Grid'
 
 class Form extends React.Component {
    render () {
-      const { handleSubmit, submitting, type = 'add' } = this.props
+      const { handleSubmit, submitting, type = 'add', list, init } = this.props
    
       const btnColor = {'delete': 'danger', 'edit': 'warning', 'add': 'primary'}[type]
       const btnText = {'delete': 'Excluir', 'edit': 'Enviar', 'add': 'Enviar'}[type]
@@ -38,14 +38,14 @@ class Form extends React.Component {
                   </Grid>   
                </div>
                <div className="row">
-                  <ItemList />
+                  <ItemList list={list}/>
                </div>
             </div>
             <div className="box-footer">
                <button type="submit" disabled={submitting} className={'btn mr-5 btn-' + btnColor}>
                   {btnText}
                </button>
-               <button type="button" className="btn btn-default" onClick={this.props.init}>
+               <button type="button" className="btn btn-default" onClick={init}>
                   Cancelar
                </button>
             </div>
@@ -54,11 +54,17 @@ class Form extends React.Component {
    }
 }
 
+
+const select = formValueSelector('billingCycles')
+const mapStateToProps = state => ({
+   list: select(state, 'credits')
+})
+
 const mapDispatchToProps = dispatch => (
    bindActionCreators({ init }, dispatch)
 )
 
 const connectReduxForm = reduxForm({form: 'billingCycles', destroyOnUnmount: false})
-const connectRedux = connect(null, mapDispatchToProps)
+const connectRedux = connect(mapStateToProps, mapDispatchToProps)
 
 export default connectReduxForm(connectRedux(Form))

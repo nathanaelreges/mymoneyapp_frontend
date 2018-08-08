@@ -1,16 +1,31 @@
 import React from 'react'
-import Grid from '../../common/layout/Grid'
 import { Field } from 'redux-form'
+
+import Grid from '../../common/layout/Grid'
+import Input from '../../common/form/Input'
+
+
 
 
 class ItemList extends React.Component {
    renderRows () {
-      return (
-         <tr>
-            <td><Field name="credits[0].name" component='input'/></td>
-            <td><Field name="credits[0].value" component='input'/></td>
+      let { list } = this.props
+      list = list.length === 0 ? [{}] : list
+
+      return list.map((item, index) => (
+         <tr key={item._id}>
+            <td>
+               <Field name={`credits[${index}].name`} component={Input}
+                  placeholder="Insira o nome" type="text"
+               />
+             </td>
+            <td>
+               <Field name={`credits[${index}].value`} component={Input}
+                  placeholder="Insira o valor" type="number"
+               />
+            </td>
          </tr>
-      )
+      ))
    }
 
    render () {

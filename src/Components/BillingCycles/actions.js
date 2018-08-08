@@ -6,12 +6,13 @@ import { TabActions } from '../../common/tab'
 
 const BaseURL = 'http://localhost:3003/api/billingcycles'
 
+const INITIAL_FORM_STATE = {credits: [{}], debits: [{}]}
 
 export const init = () => ([
    TabActions.show('list', 'add'),
    TabActions.select('list'),
    fetchList(),
-   initForm('billingCycles', {})
+   initForm('billingCycles', INITIAL_FORM_STATE)
 ])
 
 
