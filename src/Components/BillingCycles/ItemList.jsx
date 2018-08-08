@@ -1,19 +1,23 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { Field } from 'redux-form'
 
 import Grid from '../../common/layout/Grid'
 import Input from '../../common/form/Input'
+import IconBtn from '../../common/templates/IconBtn'
+import { ItemList as actions } from './actions'
 
 
 
 
 class ItemList extends React.Component {
    renderRows () {
-      let { list } = this.props
+      let { list, addField } = this.props
       list = list.length === 0 ? [{}] : list
 
       return list.map((item, index) => (
-         <tr key={item._id}>
+         <tr key={index}>
             <td>
                <Field name={`credits[${index}].name`} component={Input}
                   placeholder="Insira o nome" type="text"
@@ -23,6 +27,9 @@ class ItemList extends React.Component {
                <Field name={`credits[${index}].value`} component={Input}
                   placeholder="Insira o valor" type="number"
                />
+            </td>
+            <td>
+               <IconBtn color="primary" icon="plus" onClick={()=>addField('credits', index+1)}/>
             </td>
          </tr>
       ))
@@ -52,4 +59,9 @@ class ItemList extends React.Component {
 
 }
 
-export default ItemList
+
+const maDispatchToProps = dispatch => (
+   bindActionCreators(actions, dispatch)
+)
+
+export default connect(null, maDispatchToProps)(ItemList)

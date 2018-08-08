@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { initialize as initForm } from 'redux-form'
+import { initialize as initForm, arrayInsert } from 'redux-form'
 import { toastr } from 'react-redux-toastr'
 
 import { TabActions } from '../../common/tab'
@@ -38,6 +38,16 @@ export const updateCycle = data => (submit('put', data))
 export const deleteCycle = data => (submit('delete', data))
 
 
+
+
+export const ItemList = {
+   addField (field, index) {
+      return arrayInsert('billingCycles', field, index, {})
+   },
+   copyField (field, index, data) {
+      return arrayInsert('billingCycles', field, index, data)
+   }
+}
 
 
 const submit = (method, data) => {

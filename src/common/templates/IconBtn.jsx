@@ -5,7 +5,7 @@ const IconBtn = ({color = 'primary', icon, onClick, size, moreClass}) => {
    moreClass = moreClass? ' ' + moreClass: ''
 
    return (
-      <button className={'btn btn-' + color + btnSize + moreClass } onClick={onClick}>
+      <button type="button" className={'btn btn-' + color + btnSize + moreClass } onClick={onClick}>
          <i className={'fa fa-' + icon}></i>
       </button>
    )
