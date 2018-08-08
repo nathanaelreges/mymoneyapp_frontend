@@ -9,7 +9,8 @@ const TabHeader = props => (
    <If value={props.showList[props.target] == true}>
       <li className={props.target == props.selected? 'active': ''} >
          <a href="javascript:;" onClick={()=>{props.select(props.target)}}> 
-            {props.title}
+            <i className={'fa fa-' + props.icon}> </i>
+            {' ' + props.title}
          </a>
       </li>
    </If>

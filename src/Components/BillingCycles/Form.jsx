@@ -4,29 +4,11 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { init } from './actions'
+import FormGroup from '../../common/form/FormGroup'
+import Grid from '../../common/layout/Grid'
 
 
 class Form extends React.Component {
-   constructor (props) {
-      super(props)
-      this.renderField = this.renderField.bind(this)
-   }
-
-   renderField ({type, input, label}) {
-      const typeDelete = this.props.type == 'delete'
-
-      return (
-         <div className="form-group">
-            <label htmlFor={input.name}>
-               {label}
-            </label>
-            <input {...input} id={input.name} type={type} className="form-control" placeholder={label}
-               disabled={typeDelete}
-            />
-         </div>
-      )
-   }
-   
    render () {
       const { handleSubmit, submitting, type = 'add' } = this.props
    
@@ -36,15 +18,33 @@ class Form extends React.Component {
    
       return (
          <form className="form" onSubmit={handleSubmit}>
-            <Field name="name" label="Nome" type="text" component={this.renderField} />
-            <Field name="month" label="Mês" type="number" component={this.renderField} />
-            <Field name="year" label="Ano" type="number" component={this.renderField} />
-            <button type="submit" disabled={submitting} className={'btn mr-5 btn-' + btnColor}>
-               {btnText}
-            </button>
-            <button type="button" className="btn btn-default" onClick={this.props.init}>
-               Voltar
-            </button>
+            <div className="box-body">
+               <div className="row">
+                  <Grid cols="12 4">
+                     <Field name="name" label="Nome" type="text" component={FormGroup} 
+                        readOnly={typeDelete} placeholder="Insira o nome"
+                     />
+                  </Grid>
+                  <Grid cols="12 4">
+                     <Field name="month" label="Mês" type="number" component={FormGroup} 
+                        readOnly={typeDelete} placeholder="Insira o mês"
+                     />
+                  </Grid>
+                  <Grid cols="12 4">
+                     <Field name="year" label="Ano" type="number" component={FormGroup} 
+                        readOnly={typeDelete} placeholder="Insira o ano"
+                     />
+                  </Grid>   
+               </div>
+            </div>
+            <div className="box-footer">
+               <button type="submit" disabled={submitting} className={'btn mr-5 btn-' + btnColor}>
+                  {btnText}
+               </button>
+               <button type="button" className="btn btn-default" onClick={this.props.init}>
+                  Cancelar
+               </button>
+            </div>
          </form>
       )
    }

@@ -15,13 +15,14 @@ export const init = () => ([
 ])
 
 
-export const goEditCycle = data => ([   
+
+export const showEditCycle = data => ([   
    TabActions.show('edit'),
    TabActions.select('edit'),
    initForm('billingCycles', data)
 ])
 
-export const goDeleteCycle = data => ([   
+export const showDeleteCycle = data => ([   
    TabActions.show('delete'),
    TabActions.select('delete'),
    initForm('billingCycles', data)
@@ -29,37 +30,31 @@ export const goDeleteCycle = data => ([
 
 
 
+export const createCycle = data => (submit('post', data))
 
-export const addCycle = data => {
-   const request = axios.post(BaseURL, data)
-   return handleResponse(request)
-}
+export const updateCycle = data => (submit('put', data))
 
-export const editCycle = data => {
-   const request = axios.put(BaseURL + '/' + data._id, data)
-   return handleResponse(request)
-}
-
-export const deleteCycle = data => {
-   const request = axios.delete(BaseURL + '/' + data._id)
-   return handleResponse(request)
-}
+export const deleteCycle = data => (submit('delete', data))
 
 
-const handleResponse = (request) => {
-   return request.then(() => {
-      toastr.success('Sucesso', 'Sua ação foi concluida.')
-      return init()
-   })
-   .catch((err) =>{
-      err.response.data.erros.forEach(text => {
-         toastr.error(text)
+
+
+const submit = (method, data) => {
+   const id = data._id? ('/' + data._id) : ''
+
+   return axios[method](BaseURL + id, data)
+      .then(() => {
+         toastr.success('Sucesso', 'Sua ação foi concluida.')
+         return init()
       })
-      return {type: 'SKIP'}
-   })
+      .catch((err) =>{
+         err.response.data.erros.forEach(text => {
+            toastr.error('Erro', text)
+         })
+         return {type: 'SKIP'}
+      })
+   //
 }
-
-
 
 const fetchList = () => (
    axios.get(BaseURL).then(res=>({

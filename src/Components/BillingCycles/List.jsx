@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import IconBtn from '../../common/templates/IconBtn'
-import { goEditCycle , goDeleteCycle } from './actions'
+import { showEditCycle , showDeleteCycle } from './actions'
 
 
 
 class List extends React.Component {
-
    render () {
       const renderList = () => (
          this.props.list.map(item => (
@@ -17,11 +16,11 @@ class List extends React.Component {
                <td>{item.month}</td>
                <td>{item.year}</td>
                <td>
-                  <IconBtn color="warning" icon="edit" size="xs" moreClass="mr-5"
-                     onClick={()=>{this.props.goEditCycle(item)}}
+                  <IconBtn color="warning" icon="pencil" size="xs" moreClass="mr-5"
+                     onClick={()=>{this.props.showEditCycle(item)}}
                   />
-                  <IconBtn color="danger" icon="times" size="xs" 
-                     onClick={()=>{this.props.goDeleteCycle(item)}}
+                  <IconBtn color="danger" icon="trash-o" size="xs" 
+                     onClick={()=>{this.props.showDeleteCycle(item)}}
                   />
                </td>
             </tr>
@@ -52,8 +51,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => (
    bindActionCreators({
-      goEditCycle,
-      goDeleteCycle
+      showEditCycle,
+      showDeleteCycle
    }, dispatch)
 )
 
