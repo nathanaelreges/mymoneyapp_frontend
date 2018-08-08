@@ -2,6 +2,7 @@ import React from 'react'
 import Middleware from './Middleware'
 import routes from './routes'
 import { hot } from 'react-hot-loader'
+import ReduxToastr from 'react-redux-toastr'
 
 import '../common/templates/dependecies'
 import Header from '../common/templates/Header'
@@ -19,6 +20,14 @@ const App = props => (
             {routes}
          </div>
          <Footer />
+         <ReduxToastr
+            timeOut={4000}
+            preventDuplicates
+            position="top-right"
+            transitionIn="fadeIn"
+            transitionOut="fadeOut"
+            progressBar
+         />
       </Middleware>
    </div>
 )

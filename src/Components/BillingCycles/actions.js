@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { initialize as initForm } from 'redux-form'
+import { toastr } from 'react-redux-toastr'
 
 import { TabActions } from '../../common/tab'
 
@@ -29,33 +30,34 @@ export const goDeleteCycle = data => ([
 
 
 
-export const addCycle = data => (
-   axios.post(BaseURL, data)
-      .then(init)
-      .catch((err) =>{
-         return {type: 'test'}
-      })
-   //
-)
+export const addCycle = data => {
+   const request = axios.post(BaseURL, data)
+   return handleResponse(request)
+}
 
-export const editCycle = data => (
-   axios.put(BaseURL + '/' + data._id, data)
-      .then(init)
-      .catch((err) =>{
-         return {type: 'test'}
-      })
-   //
-)
+export const editCycle = data => {
+   const request = axios.put(BaseURL + '/' + data._id, data)
+   return handleResponse(request)
+}
 
-export const deleteCycle = data => (
-   axios.delete(BaseURL + '/' + data._id)
-      .then(init)
-      .catch((err) =>{
-         return {type: 'test'}
-      })
-   //
-)
+export const deleteCycle = data => {
+   const request = axios.delete(BaseURL + '/' + data._id)
+   return handleResponse(request)
+}
 
+
+const handleResponse = (request) => {
+   return request.then(() => {
+      toastr.success('Sucesso', 'Sua ação foi concluida.')
+      return init()
+   })
+   .catch((err) =>{
+      err.response.data.erros.forEach(text => {
+         toastr.error(text)
+      })
+      return {type: 'SKIP'}
+   })
+}
 
 
 
