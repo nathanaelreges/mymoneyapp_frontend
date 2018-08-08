@@ -1,17 +1,44 @@
 import axios from 'axios'
-import { reset as resetReduxForm } from 'redux-form'
+import { initialize as initForm } from 'redux-form'
+
 
 import { TabActions } from '../../common/tab'
 
 const BaseURL = 'http://localhost:3003/api/billingcycles'
 
 
-export const onLoad = () => (
+export const onListLoad = () => (
    fetchList()
+)
+
+export const init = () => (
+   [
+      TabActions.show('list', 'add'),
+      TabActions.select('list'),
+      fetchList(),
+      initForm('billingCycles', {})
+   ]
+)
+
+export const onListEdit = data => (
+   [   
+      TabActions.show('edit'),
+      TabActions.select('edit'),
+      initForm('billingCycles', data)
+   ]
 )
 
 export const onAdd = data => (
    axios.post(BaseURL, data)
+      .then(init)
+      .catch((err) =>{
+         return {type: 'test'}
+      })
+   //
+)
+
+export const onEdit = data => (
+   axios.put(BaseURL + '/' + data._id, data)
       .then(init)
       .catch((err) =>{
          return {type: 'test'}
@@ -26,10 +53,3 @@ function fetchList () {
    }))
 }
 
-function init () {
-   return [
-      TabActions.show('list', 'add'),
-      TabActions.select('list'),
-      fetchList()
-   ]
-}

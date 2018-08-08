@@ -1,17 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { onLoad } from './actions'
 
-const renderList = (list) => (
-   list.map(item => (
-      <tr key={item._id}>
-         <td>{item.name}</td>
-         <td>{item.month}</td>
-         <td>{item.year}</td>
-      </tr>
-   ))
-)
+import IconBtn from '../../common/templates/IconBtn'
+import { onListLoad, onListEdit } from './actions'
+
+
 
 class List extends React.Component {
    componentWillMount () {
@@ -19,16 +13,29 @@ class List extends React.Component {
    }
 
    render () {
+      const renderList = () => (
+         this.props.list.map(item => (
+            <tr key={item._id}>
+               <td>{item.name}</td>
+               <td>{item.month}</td>
+               <td>{item.year}</td>
+               <td>
+                  <IconBtn color="warning" icon="edit" onClick={()=>{this.props.onEdit(item)}}/>
+               </td>
+            </tr>
+         ))
+      )
+
       return (
          <table className="table table-hover">
-            <caption>Ciclos de pagamento:</caption>
             <tbody>
                <tr>
                   <th>Nome</th>
                   <th>Mês</th>
                   <th>Ano</th>
+                  <th>Ações</th>
                </tr>
-               {renderList(this.props.list)}
+               {renderList()}
             </tbody>
          </table>
       )
@@ -40,7 +47,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => (
-   bindActionCreators({ onLoad }, dispatch)
+   bindActionCreators({ 
+      onLoad: onListLoad,
+      onEdit: onListEdit
+   }, dispatch)
 )
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)
