@@ -7,15 +7,20 @@ import { init } from './actions'
 import ItemList from './ItemList'
 import FormGroup from '../../common/form/FormGroup'
 import Grid from '../../common/layout/Grid'
+import Summary from './Summary';
 
 
 class Form extends React.Component {
    render () {
-      const { handleSubmit, submitting, type = 'add', list, init } = this.props
+      const { handleSubmit, submitting, type = 'add', credits, debits, init } = this.props
    
       const btnColor = {'delete': 'danger', 'edit': 'warning', 'add': 'primary'}[type]
       const btnText = {'delete': 'Excluir', 'edit': 'Enviar', 'add': 'Enviar'}[type]
       const typeDelete = type == 'delete'
+
+      const sum = (t, c) => t + c
+      const creditTotal = credits.map(x=> +x.value || 0).reduce(sum, 0)
+      const debitTotal = debits.map(x=> +x.value || 0).reduce(sum, 0)
    
       return (
          <form className="form" onSubmit={handleSubmit}>
@@ -37,9 +42,10 @@ class Form extends React.Component {
                      />
                   </Grid>   
                </div>
+               <Summary credit={creditTotal} debit={debitTotal}/>  
                <div className="row">
-                  <ItemList list={this.props.credits} label={'Créditos'} field={'credits'}/>
-                  <ItemList list={this.props.debits} label={'Débitos'} field={'debits'}/>
+                  <ItemList list={credits} label={'Créditos'} field={'credits'}/>
+                  <ItemList list={debits} label={'Débitos'} field={'debits'}/>
                </div>
             </div>
             <div className="box-footer">
