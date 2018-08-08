@@ -30,13 +30,15 @@ class List extends React.Component {
 
       return (
          <table className="table table-hover">
-            <tbody >
+            <thead>
                <tr>
-                  <th className="list-table" >Nome</th>
+                  <th>Nome</th>
                   <th>Mês</th>
                   <th>Ano</th>
                   <th className="list-buttons">Ações</th>
                </tr>
+            </thead>
+            <tbody>
                {renderList()}
             </tbody>
          </table>
