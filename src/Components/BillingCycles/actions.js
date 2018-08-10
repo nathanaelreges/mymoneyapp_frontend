@@ -106,7 +106,8 @@ const filterList = (list) => {
       if(
          typeof cur != "object" || (
             (cur.name === undefined || cur.name.trim() === "") &&
-            (cur.value === undefined || (typeof cur.value == 'string' && cur.value.trim() === ""))
+            (cur.value === undefined || (typeof cur.value == 'string' && cur.value.trim() === "")) &&
+            (cur.state === undefined || cur.state.trim() === "")
          )
       ){
          return acc

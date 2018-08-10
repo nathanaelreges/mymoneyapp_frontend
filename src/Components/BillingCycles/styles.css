@@ -3,10 +3,13 @@
 }
 
 .item-list-buttons {
-   width: 90px;
-   height: 100%;
+   width: 80px;
    display: flex;
    justify-content: space-around;
+}
+
+.item-list-buttons {
+   vertical-align: center;
 }
 
 
