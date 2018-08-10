@@ -4,6 +4,7 @@
 
 .item-list-buttons {
    width: 90px;
+   height: 100%;
    display: flex;
    justify-content: space-around;
 }

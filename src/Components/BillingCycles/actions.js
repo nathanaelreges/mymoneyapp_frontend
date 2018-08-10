@@ -17,7 +17,8 @@ export const init = () => ([
 
 
 
-export const showEditCycle = data => {
+export const showEditCycle = _data => {
+   const data = {..._data}
    const credits = data.credits
    if(!credits || credits.length == 0) {
       data.credits = [{}]
@@ -69,7 +70,8 @@ export const ItemList = {
 }
 
 
-const submit = (method, data) => {
+const submit = (method, _data) => {
+   const data = {..._data}
    const id = data._id? ('/' + data._id) : ''
 
    if(data){
@@ -101,7 +103,12 @@ const fetchList = () => (
 
 const filterList = (list) => {
    return list.reduce((acc, cur, index)=>{
-      if(cur.name == undefined && cur.value == undefined || cur.name == "" && cur.value == ""){
+      if(
+         typeof cur != "object" || (
+            (cur.name === undefined || cur.name.trim() === "") &&
+            (cur.value === undefined || (typeof cur.value == 'string' && cur.value.trim() === ""))
+         )
+      ){
          return acc
       }
       else {

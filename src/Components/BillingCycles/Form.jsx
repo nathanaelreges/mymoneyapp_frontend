@@ -44,8 +44,8 @@ class Form extends React.Component {
                </div>
                <Summary credit={creditTotal} debit={debitTotal}/>  
                <div className="row">
-                  <ItemList list={credits} label={'Créditos'} field={'credits'}/>
-                  <ItemList list={debits} label={'Débitos'} field={'debits'}/>
+                  <ItemList list={credits} label={'Créditos'} field={'credits'} readOnly={typeDelete}/>
+                  <ItemList list={debits} label={'Débitos'} field={'debits'} readOnly={typeDelete}/>
                </div>
             </div>
             <div className="box-footer">

@@ -13,7 +13,7 @@ import { ItemList as actions } from './actions'
 
 class ItemList extends React.Component {
    renderRows () {
-      let { list, addField, copyField, deleteField, field } = this.props
+      let { list, addField, copyField, deleteField, field, readOnly } = this.props
       const emptyList = list == undefined || list.length == 0 
       
       if(emptyList){
@@ -24,19 +24,19 @@ class ItemList extends React.Component {
          <tr key={index}>
             <td>
                <Field name={`${field}[${index}].name`} component={Input}
-                  placeholder="Insira o nome" type="text"
+                  placeholder="Insira o nome" type="text" readOnly={readOnly}
                />
             </td>
             <td>
                <Field name={`${field}[${index}].value`} component={Input}
-                  placeholder="Insira o valor" type="number"
+                  placeholder="Insira o valor" type="number" readOnly={readOnly}
                />
             </td>
             <td className="item-list-buttons">
-               <IconBtn color="primary" icon="plus" size="xs" onClick={()=>addField(field, index+1)}/>
-               <IconBtn color="warning" icon="copy" size="xs" onClick={()=>copyField(field, index+1, item)}/>
+               <IconBtn color="primary" icon="plus" size="xs" onClick={()=>addField(field, index+1)} disabled={readOnly}/>
+               <IconBtn color="warning" icon="copy" size="xs" onClick={()=>copyField(field, index+1, item)} disabled={readOnly}/>
                <IconBtn color="danger" icon="trash-o" size="xs" 
-                  onClick={()=>deleteField(list, field, index)}/>
+                  onClick={()=>deleteField(list, field, index)} disabled={readOnly}/>
             </td>
          </tr>
       ))
