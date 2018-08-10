@@ -1,5 +1,4 @@
 import React from 'react'
-import Grid from '../../common/layout/Grid'
 import SmallBox from '../../common/templates/SmallBox'
 
 const numberWithDots = (x) => (x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))

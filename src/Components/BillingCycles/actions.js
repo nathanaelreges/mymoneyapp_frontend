@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { initialize as initForm, arrayInsert, arrayRemove } from 'redux-form'
+import { initialize as initForm, arrayInsert, arrayRemove, change } from 'redux-form'
 import { toastr } from 'react-redux-toastr'
 
 import { TabActions } from '../../common/tab'
@@ -17,11 +17,22 @@ export const init = () => ([
 
 
 
-export const showEditCycle = data => ([   
-   TabActions.show('edit'),
-   TabActions.select('edit'),
-   initForm('billingCycles', data)
-])
+export const showEditCycle = data => {
+   const credits = data.credits
+   if(!credits || credits.length == 0) {
+      data.credits = [{}]
+   }
+   const debits = data.debits
+   if(!debits || debits.length == 0) {
+      data.debits = [{}]
+   }
+
+   return [   
+      TabActions.show('edit'),
+      TabActions.select('edit'),
+      initForm('billingCycles', data)
+   ]
+}
 
 export const showDeleteCycle = data => ([   
    TabActions.show('delete'),
@@ -45,16 +56,27 @@ export const ItemList = {
       return arrayInsert('billingCycles', field, index, {})
    },
    copyField (field, index, data) {
-      return arrayInsert('billingCycles', field, index, data)
+      return arrayInsert('billingCycles', field, index, data || {})
    },
-   deleteField (field, index) {
-      return arrayRemove('billingCycles', field, index)
+   deleteField (list, field, index) {
+      if(list.length > 1){
+         return arrayRemove('billingCycles', field, index)
+      }
+      else{
+         return change('billingCycles', field, [{}]) 
+      }
    }
 }
 
 
 const submit = (method, data) => {
    const id = data._id? ('/' + data._id) : ''
+
+   if(data){
+      data.credits = filterList(data.credits)
+      data.debits = filterList(data.debits)
+   }
+   console.log(data)
 
    return axios[method](BaseURL + id, data)
       .then(() => {
@@ -77,3 +99,13 @@ const fetchList = () => (
    }))
 )
 
+const filterList = (list) => {
+   return list.reduce((acc, cur, index)=>{
+      if(cur.name == undefined && cur.value == undefined || cur.name == "" && cur.value == ""){
+         return acc
+      }
+      else {
+         return acc.concat([cur])
+      }
+   }, [])
+}

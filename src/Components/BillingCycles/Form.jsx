@@ -12,7 +12,7 @@ import Summary from './Summary';
 
 class Form extends React.Component {
    render () {
-      const { handleSubmit, submitting, type = 'add', credits, debits, init } = this.props
+      const { handleSubmit, submitting, type = 'add', credits = [], debits = [], init } = this.props
    
       const btnColor = {'delete': 'danger', 'edit': 'warning', 'add': 'primary'}[type]
       const btnText = {'delete': 'Excluir', 'edit': 'Enviar', 'add': 'Enviar'}[type]

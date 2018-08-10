@@ -14,7 +14,11 @@ import { ItemList as actions } from './actions'
 class ItemList extends React.Component {
    renderRows () {
       let { list, addField, copyField, deleteField, field } = this.props
-      list = list.length == 0 ? [{}] : list
+      const emptyList = list == undefined || list.length == 0 
+      
+      if(emptyList){
+            list = [{}]
+      }
 
       return list.map((item, index) => (
          <tr key={index}>
@@ -32,7 +36,7 @@ class ItemList extends React.Component {
                <IconBtn color="primary" icon="plus" size="xs" onClick={()=>addField(field, index+1)}/>
                <IconBtn color="warning" icon="copy" size="xs" onClick={()=>copyField(field, index+1, item)}/>
                <IconBtn color="danger" icon="trash-o" size="xs" 
-                  onClick={()=>{list.length>1 && deleteField(field, index)}}/>
+                  onClick={()=>deleteField(list, field, index)}/>
             </td>
          </tr>
       ))
