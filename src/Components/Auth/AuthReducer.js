@@ -1,7 +1,7 @@
 const storageUser = localStorage.getItem('_my_auth_user')
 const storageToken = localStorage.getItem('_my_auth_token')
 
-const INITIAL_STATE = {user: JSON.parse(storageUser), token: storageToken}
+const INITIAL_STATE = {user: {name: 'Nathanel Reges', email: 'nathanaelreges@gmail.com'}} //JSON.parse(storageUser), token: storageToken}
 
 
 export default (state = INITIAL_STATE, action) => {

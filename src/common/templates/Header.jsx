@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import NavBarLogin from './NavBarLogin'
 
 const Header = props => (
    <header className="main-header">
@@ -10,6 +11,11 @@ const Header = props => (
       <nav className="navbar navbar-static-top" role="navigation">
          <a href="" className="sidebar-toggle" data-toggle="push-menu" role="button">
          </a>
+         <div className="navbar-custom-menu">
+            <ul className="nav navbar-nav">
+               <NavBarLogin />
+            </ul>
+         </div>
       </nav>
    </header>
 )

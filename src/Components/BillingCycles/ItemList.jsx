@@ -55,26 +55,24 @@ class ItemList extends React.Component {
    }
 
    render () {
-      return (
-         <Grid cols="12 6">
-            <fieldset>
-               <legend>{this.props.label}</legend>
-               <table className="table">
-                  <thead>
-                     <tr>
-                        <th>Nome</th>
-                        <th>Valor</th>
-                        {this.props.field == 'debits'? <th>Status</th>: false}
-                        <th>Ações</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {this.renderRows()}
-                  </tbody>
-               </table>
-            </fieldset>
-         </Grid>
-      )
+      return (<Grid cols="12 6">
+         <fieldset>
+            <legend>{this.props.label}</legend>
+            <table className="table">
+               <thead>
+                  <tr>
+                     <th>Nome</th>
+                     <th>Valor</th>
+                     {this.props.field == 'debits'? <th>Status</th>: false}
+                     <th>Ações</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {this.renderRows()}
+               </tbody>
+            </table>
+         </fieldset>
+      </Grid>)
    }
 
 }
