@@ -1,7 +1,7 @@
-//import Component from './BillingCycles'
+import Component from './Auth'
 import reducer from './AuthReducer'
 //import './styles.css'
 
-//export default Component
+export default Component
 
 export { reducer }
