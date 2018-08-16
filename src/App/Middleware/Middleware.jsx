@@ -1,32 +1,22 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import ReduxPromise from 'redux-promise'
-import ReduxMulti from 'redux-multi'
 
-import reducer from './reducer'
+import configureStore from './configureStore'
+import Authentication from './Authentication'
 
+const store = configureStore()
 
-const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ ?
-   window.__REDUX_DEVTOOLS_EXTENSION__() : null
-//
-
-const store = applyMiddleware(ReduxPromise, ReduxMulti)(createStore)(reducer, devTools)
 
 const Middleware = props => (
    <Provider store={store}>
       <BrowserRouter>
-         {props.children}
+         <Authentication>
+            {props.children}
+         </Authentication>
       </BrowserRouter>
    </Provider>
 )
 
 export default Middleware
 
-
-if (module.hot) {
-   module.hot.accept('./reducer', () => {
-      store.replaceReducer(reducer);
-   });
-}

@@ -1,20 +1,21 @@
 const storageUser = localStorage.getItem('_my_auth_user')
 const storageToken = localStorage.getItem('_my_auth_token')
 
-const INITIAL_STATE = {user: {name: 'Nathanel Reges', email: 'nathanaelreges@gmail.com'}} //JSON.parse(storageUser), token: storageToken}
+const INITIAL_STATE = {user: JSON.parse(storageUser), token: storageToken, tokenValid: undefined}
 
 
 export default (state = INITIAL_STATE, action) => {
    switch (action.type) {
       case 'TOKEN_VALIDATED':
          if(action.payload) {
-            return {...state, validToken: true}
+
+            return {...state, tokenValid: true}
          }
          else {
             localStorage.removeItem('_my_auth_user', undefined)
             localStorage.removeItem('_my_auth_token', undefined)
             
-            return {user: undefined, token: undefined, validToken: false}
+            return {user: undefined, token: undefined, tokenValid: false}
          }
 
       case 'USER_FETCHED':
@@ -24,7 +25,7 @@ export default (state = INITIAL_STATE, action) => {
          localStorage.setItem('_my_auth_user', JSON.stringify(user))
          localStorage.setItem('_my_auth_token', token)
 
-         return {user, token, validToken: true}
+         return {user, token, tokenValid: true}
       
       default:
          return state

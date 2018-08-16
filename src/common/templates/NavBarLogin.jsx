@@ -24,7 +24,7 @@ class NavBarLogin extends React.Component {
             onMouseEnter={()=>this.toggleExpand()} 
             onMouseLeave={()=>this.toggleExpand()}
          >
-         <a onClick={()=>this.toggleExpand()} className="dropdown-toggle"
+         <a className="dropdown-toggle"
             href="javascript:;" aria-expanded="false">
             <img src="https://picsum.photos/200/?random" className="user-image" alt="User Image" />
             <span className="hidden-xs">{ name }</span>

@@ -7,17 +7,16 @@ import '../../common/templates/dependecies'
 import Header from '../../common/templates/Header'
 import Sidebar from '../../common/templates/Sidebar'
 import Footer from '../../common/templates/Footer'
-import Messages from '../../common/Messages'
+//import Messages from '../../common/Messages'
 
 
-const App = props => (<div>
+const Content = props => (<div  className="wrapper">
    <Header />
    <Sidebar />
    <div className="content-wrapper">
       <Router />
    </div>
    <Footer />
-   <Messages />
 </div>)
 
-export default App
+export default Content
